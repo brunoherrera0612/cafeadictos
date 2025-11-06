@@ -4,127 +4,827 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú - Cafeadictos</title>
-    <link rel="stylesheet" href="css/styles-global.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F5E6D3;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        .header-principal {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .titulo-principal {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 2.5em;
+            font-style: italic;
+        }
+
+        /* Banner Marquee */
+        .banner-marquee {
+            background-color: #D4AF37;
+            color: #2C1810;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 12px 0;
+        }
+
+        /* Contenedor Principal con Sidebar */
+        .menu-container {
+            display: flex;
+            width: 95%;
+            margin: 30px auto;
+            gap: 30px;
+        }
+
+        /* Sidebar de Navegación */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border: 2px solid #D4AF37;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h3 {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #8B4513;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            color: #654321;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background-color: #F5E6D3;
+            color: #2C1810;
+        }
+
+        .nav-link.active {
+            background-color: #D4AF37;
+            color: #2C1810;
+            font-weight: bold;
+        }
+
+        /* Contenido Principal */
+        .content-area {
+            flex: 1;
+        }
+
+        /* Vista de Grilla de Productos */
+        .productos-view {
+            display: block;
+        }
+
+        .categoria-section {
+            margin-bottom: 40px;
+        }
+
+        .categoria-titulo {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 2em;
+            font-style: italic;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #D4AF37;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .producto-card {
+            background-color: white;
+            border: 2px solid #D4AF37;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .producto-imagen-circular {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+            border: 3px solid #D4AF37;
+        }
+
+        .producto-nombre {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .producto-precio-card {
+            color: #D2691E;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* Vista de Detalle del Producto */
+        .detalle-view {
+            display: none;
+            background-color: white;
+            border: 2px solid #D4AF37;
+            padding: 40px;
+        }
+
+        .detalle-view.active {
+            display: block;
+        }
+
+        .breadcrumb {
+            color: #654321;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #D2691E;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .detalle-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .detalle-imagen {
+            flex-shrink: 0;
+        }
+
+        .detalle-imagen img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #D4AF37;
+        }
+
+        .detalle-info {
+            flex: 1;
+        }
+
+        .detalle-titulo {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 2.5em;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .detalle-descripcion {
+            color: #654321;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .detalle-precio {
+            color: #D2691E;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Cantidad Selector */
+        .cantidad-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cantidad-label {
+            font-weight: bold;
+            color: #2C1810;
+        }
+
+        .cantidad-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid #D4AF37;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .cantidad-btn {
+            background-color: white;
+            border: none;
+            color: #D2691E;
+            font-size: 1.5em;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cantidad-btn:hover {
+            background-color: #F5E6D3;
+        }
+
+        .cantidad-input {
+            border: none;
+            text-align: center;
+            width: 60px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2C1810;
+        }
+
+        /* Botones de Acción */
+        .botones-accion {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-seguir {
+            background-color: white;
+            color: #2C1810;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-seguir:hover {
+            background-color: #F5E6D3;
+        }
+
+        .btn-carrito {
+            background-color: #D4AF37;
+            color: #2C1810;
+        }
+
+        .btn-carrito:hover {
+            background-color: #CD853F;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .main-footer p {
+            margin: 5px 0;
+        }
+
+        .main-footer .copyright {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .main-footer .social-text {
+            font-family: Arial, sans-serif;
+            color: #F5E6D3;
+            font-size: 16px;
+        }
+
+        .main-footer .social-links {
+            margin-top: 10px;
+        }
+
+        .main-footer .social-links a {
+            font-family: Arial, sans-serif;
+            color: #D4AF37;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .main-footer .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ocultar vistas */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
-<body class="menu-page">
-    <header class="page-header">
-        <div class="header-principal">
-            <h2 class="titulo-principal">NUESTRO MENÚ</h2>
-        </div>
-        <div class="banner-marquee">
-            <marquee scrollamount="2" direction="left">
-                ☕ Espresso S/3.50 | 🥛 Cappuccino S/4.25 | 🥤 Latte S/4.75 |
-                ☕ Americano S/3.25 | 🍫 Mocha S/5.25 | 🧊 Frappé S/5.75
-            </marquee>
-        </div>
+<body>
+
+    <!-- Header -->
+    <header class="header-principal">
+        <h1 class="titulo-principal">NUESTRO MENÚ</h1>
     </header>
 
-    <main class="productos-container">
-        <div class="grilla-productos">
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">☕ ESPRESSO</h3>
-                    <p class="producto-descripcion">
-                        Café concentrado extraído con presión perfecta.<br>
-                        Intenso y aromático, la base de todos nuestros cafés.
-                    </p>
-                    <h3 class="producto-precio">S/3.50</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/espresso.jpg" alt="Espresso" width="200" height="170">
-                </div>
-            </article>
+    <!-- Banner Marquee -->
+    <div class="banner-marquee">
+        <marquee scrollamount="2" direction="left">
+            ☕ Espresso S/3.50 | 🥛 Cappuccino S/4.25 | 🍶 Latte S/4.75 | 
+            ☕ Americano S/3.25 | 🍫 Mocha S/5.25 | 🧊 Frappé S/5.75
+        </marquee>
+    </div>
 
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">🥛 CAPPUCCINO</h3>
-                    <p class="producto-descripcion">
-                        Espresso con leche vaporizada y espuma cremosa.<br>
-                        El equilibrio perfecto entre café y leche.
-                    </p>
-                    <h3 class="producto-precio">S/4.25</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/capuchino.jpg" alt="Cappuccino" width="200" height="170">
-                </div>
-            </article>
+    <!-- Contenedor Principal -->
+    <div class="menu-container">
+        <!-- Sidebar de Navegación -->
+        <aside class="sidebar">
+            <h3>MENÚ</h3>
+            
+            <!-- Sección Bebidas -->
+            <div class="sidebar-section">
+                <div class="section-title">BEBIDAS</div>
+                <a class="nav-link active" onclick="scrollToCategory('calientes')">Bebidas Calientes</a>
+                <a class="nav-link" onclick="scrollToCategory('frias')">Bebidas Frías</a>
+                <a class="nav-link" onclick="scrollToCategory('especiales')">Bebidas Especiales</a>
+            </div>
 
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">🥤 LATTE</h3>
-                    <p class="producto-descripcion">
-                        Café suave con abundante leche vaporizada.<br>
-                        Cremoso y delicado, perfecto para cualquier momento.
-                    </p>
-                    <h3 class="producto-precio">S/4.75</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/latte.jpg" alt="Latte" width="200" height="170">
-                </div>
-            </article>
+            <!-- Sección Productos -->
+            <div class="sidebar-section">
+                <div class="section-title">PRODUCTOS</div>
+                <a class="nav-link" onclick="scrollToCategory('cafe-grano')">Café en Grano/Molido</a>
+            </div>
+        </aside>
 
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">☕ AMERICANO</h3>
-                    <p class="producto-descripcion">
-                        Espresso diluido con agua caliente.<br>
-                        Café tradicional, fuerte y reconfortante.
-                    </p>
-                    <h3 class="producto-precio">S/3.25</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/americano.jpg" alt="Americano" width="200" height="170">
-                </div>
-            </article>
+        <!-- Área de Contenido -->
+        <main class="content-area">
+            <!-- Vista de Productos (Grilla) -->
+            <div id="productosView" class="productos-view">
+                <!-- Categoría: Bebidas Calientes -->
+                <section id="calientes" class="categoria-section">
+                    <h2 class="categoria-titulo">☕ Bebidas Calientes</h2>
+                    <div class="productos-grid">
+                        <div class="producto-card" onclick="mostrarDetalle('espresso')">
+                            <img src="img/espresso.jpg" alt="Espresso" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Espresso</h3>
+                            <p class="producto-precio-card">S/3.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('americano')">
+                            <img src="img/americano.jpg" alt="Americano" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Americano</h3>
+                            <p class="producto-precio-card">S/3.25</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cappuccino')">
+                            <img src="img/capuchino.jpg" alt="Cappuccino" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Cappuccino</h3>
+                            <p class="producto-precio-card">S/4.25</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('latte')">
+                            <img src="img/latte.jpg" alt="Latte" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Latte</h3>
+                            <p class="producto-precio-card">S/4.75</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('mocha')">
+                            <img src="img/mocha.jpg" alt="Mocha" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Mocha</h3>
+                            <p class="producto-precio-card">S/5.25</p>
+                        </div>
+                    </div>
+                </section>
 
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">🍫 MOCHA</h3>
-                    <p class="producto-descripcion">
-                        Café con chocolate y crema batida.<br>
-                        La combinación perfecta para los amantes del chocolate.
-                    </p>
-                    <h3 class="producto-precio">S/5.25</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/mocha.jpg" alt="Mocha" width="200" height="170">
-                </div>
-            </article>
+                <!-- Categoría: Bebidas Frías -->
+                <section id="frias" class="categoria-section">
+                    <h2 class="categoria-titulo">🧊 Bebidas Frías</h2>
+                    <div class="productos-grid">
+                        <div class="producto-card" onclick="mostrarDetalle('frappe')">
+                            <img src="img/frappe.jpg" alt="Frappé" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Frappé</h3>
+                            <p class="producto-precio-card">S/5.75</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-helado')">
+                            <img src="img/cafe-helado.jpg" alt="Café Helado" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café Helado</h3>
+                            <p class="producto-precio-card">S/4.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cold-brew')">
+                            <img src="img/cold-brew.jpg" alt="Cold Brew" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Cold Brew</h3>
+                            <p class="producto-precio-card">S/5.00</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('iced-latte')">
+                            <img src="img/iced-latte.jpg" alt="Iced Latte" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Iced Latte</h3>
+                            <p class="producto-precio-card">S/5.25</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('iced-americano')">
+                            <img src="img/iced-americano.jpg" alt="Iced Americano" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Iced Americano</h3>
+                            <p class="producto-precio-card">S/4.00</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('lemonade-coffee')">
+                            <img src="img/lemonade-coffee.jpg" alt="Lemonade Coffee" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Lemonade Coffee</h3>
+                            <p class="producto-precio-card">S/5.50</p>
+                        </div>
+                    </div>
+                </section>
 
-            <article class="tarjeta-producto">
-                <div class="info-producto">
-                    <h3 class="producto-titulo">🧊 FRAPPÉ</h3>
-                    <p class="producto-descripcion">
-                        Café frío batido con hielo y crema.<br>
-                        Refrescante y energizante, ideal para días calurosos.
-                    </p>
-                    <h3 class="producto-precio">S/5.75</h3>
-                    <button class="carrito-button">Agregar al carrito</button>
-                </div>
-                <div class="imagen-producto">
-                    <img src="img/frappe.jpg" alt="Frappé" width="200" height="170">
-                </div>
-            </article>
-        </div>
-    </main>
+                <!-- Categoría: Bebidas Especiales -->
+                <section id="especiales" class="categoria-section">
+                    <h2 class="categoria-titulo">✨ Bebidas Especiales</h2>
+                    <div class="productos-grid">
+                        <div class="producto-card" onclick="mostrarDetalle('caramelo-latte')">
+                            <img src="img/caramelo-latte.jpg" alt="Caramelo Latte" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Caramelo Latte</h3>
+                            <p class="producto-precio-card">S/5.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('vainilla-latte')">
+                            <img src="img/vainilla-latte.jpg" alt="Vainilla Latte" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Vainilla Latte</h3>
+                            <p class="producto-precio-card">S/5.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-irlandes')">
+                            <img src="img/cafe-irlandes.jpg" alt="Café Irlandés" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café Irlandés</h3>
+                            <p class="producto-precio-card">S/6.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('white-mocha')">
+                            <img src="img/white-mocha.jpg" alt="White Mocha" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">White Mocha</h3>
+                            <p class="producto-precio-card">S/5.75</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('pistacho-latte')">
+                            <img src="img/pistacho-latte.jpg" alt="Pistacho Latte" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Pistacho Latte</h3>
+                            <p class="producto-precio-card">S/6.00</p>
+                        </div>
+                    </div>
+                </section>
 
+                <!-- Categoría: Café en Grano/Molido -->
+                <section id="cafe-grano" class="categoria-section">
+                    <h2 class="categoria-titulo">🌿 Café en Grano/Molido</h2>
+                    <div class="productos-grid">
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-colono')">
+                            <img src="img/cafe-colono.jpg" alt="Café El Colono" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café El Colono</h3>
+                            <p class="producto-precio-card">S/28.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-donshanty')">
+                            <img src="img/cafe-donshanty.jpg" alt="Café Don Shanty" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café Don Shanty</h3>
+                            <p class="producto-precio-card">S/34.25</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-santarosa')">
+                            <img src="img/cafe-santarosa.jpg" alt="Café Santa Rosa" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café Santa Rosa</h3>
+                            <p class="producto-precio-card">S/27.50</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-tiroles')">
+                            <img src="img/cafe-tiroles.jpg" alt="Café El Tirolés" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café El Tirolés</h3>
+                            <p class="producto-precio-card">S/33.00</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-villarica')">
+                            <img src="img/cafe-villarica.jpg" alt="Café Villa Rica" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Café Villa Rica</h3>
+                            <p class="producto-precio-card">S/28.00</p>
+                        </div>
+                        <div class="producto-card" onclick="mostrarDetalle('cafe-activa')">
+                            <img src="img/cafe-activa.jpg" alt="Activa Café" class="producto-imagen-circular">
+                            <h3 class="producto-nombre">Activa Café</h3>
+                            <p class="producto-precio-card">S/25.75</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Vista de Detalle del Producto -->
+            <div id="detalleView" class="detalle-view">
+                <div class="breadcrumb">
+                    <a href="#" onclick="volverAProductos()">Menú</a> / <span id="breadcrumbCategoria"></span> / <span id="breadcrumbProducto"></span>
+                </div>
+
+                <div class="detalle-content">
+                    <div class="detalle-imagen">
+                        <img id="detalleImagen" src="" alt="">
+                    </div>
+
+                    <div class="detalle-info">
+                        <h2 id="detalleTitulo" class="detalle-titulo"></h2>
+                        <p id="detalleDescripcion" class="detalle-descripcion"></p>
+                        <div id="detallePrecio" class="detalle-precio"></div>
+
+                        <div class="cantidad-selector">
+                            <span class="cantidad-label">Cantidad:</span>
+                            <div class="cantidad-controls">
+                                <button class="cantidad-btn" onclick="cambiarCantidad(-1)">−</button>
+                                <input type="number" id="cantidadInput" class="cantidad-input" value="1" min="1" readonly>
+                                <button class="cantidad-btn" onclick="cambiarCantidad(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="botones-accion">
+                            <button class="btn btn-seguir" onclick="agregarYSeguir()">Agregar y seguir comprando</button>
+                            <button class="btn btn-carrito" onclick="agregarAlCarrito()">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
     <footer class="main-footer">
-        <div class="footer-container">
+        <div>
             <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
-            
             <p class="social-text">Síguenos en nuestras redes sociales</p>
-            
-            <p class="social-links">
+            <div class="social-links">
                 <a href="#">Facebook</a> |
                 <a href="#">Instagram</a> |
                 <a href="#">TikTok</a>
-            </p>
+            </div>
         </div>
     </footer>
+        <script>
+        // Base de datos de productos
+        const productos = {
+            // BEBIDAS CALIENTES
+            'espresso': {
+                nombre: 'Espresso',
+                categoria: 'Bebidas Calientes',
+                descripcion: 'Café concentrado extraído con presión perfecta. Intenso y aromático, la base de todos nuestros cafés. Disfruta de su sabor puro y reconfortante.',
+                precio: 'S/3.50',
+                imagen: 'img/espresso.jpg'
+            },
+            'americano': {
+                nombre: 'Americano',
+                categoria: 'Bebidas Calientes',
+                descripcion: 'Espresso diluido con agua caliente. Café tradicional, fuerte y reconfortante. Perfecto para los amantes del café clásico.',
+                precio: 'S/3.25',
+                imagen: 'img/americano.jpg'
+            },
+            'cappuccino': {
+                nombre: 'Cappuccino',
+                categoria: 'Bebidas Calientes',
+                descripcion: 'Espresso con leche vaporizada y espuma cremosa. El equilibrio perfecto entre café y leche. Una experiencia suave y deliciosa.',
+                precio: 'S/4.25',
+                imagen: 'img/capuchino.jpg'
+            },
+            'latte': {
+                nombre: 'Latte',
+                categoria: 'Bebidas Calientes',
+                descripcion: 'Café suave con abundante leche vaporizada. Cremoso y delicado, perfecto para cualquier momento del día.',
+                precio: 'S/4.75',
+                imagen: 'img/latte.jpg'
+            },
+            'mocha': {
+                nombre: 'Mocha',
+                categoria: 'Bebidas Calientes',
+                descripcion: 'Café con chocolate y crema batida. La combinación perfecta para los amantes del chocolate. Dulce, cremoso y reconfortante.',
+                precio: 'S/5.25',
+                imagen: 'img/mocha.jpg'
+            },
+
+            // BEBIDAS FRÍAS
+            'frappe': {
+                nombre: 'Frappé',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Café frío batido con hielo y crema. Refrescante y energizante, ideal para días calurosos. Una explosión de frescura.',
+                precio: 'S/5.75',
+                imagen: 'img/frappe.jpg'
+            },
+            'cafe-helado': {
+                nombre: 'Café Helado',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Café espresso servido sobre hielo. Simple, refrescante y delicioso. Perfecto para el verano.',
+                precio: 'S/4.50',
+                imagen: 'img/cafe-helado.jpg'
+            },
+            'cold-brew': {
+                nombre: 'Cold Brew',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Café extraído en frío durante 12 horas. Suave, menos ácido y naturalmente dulce. Una experiencia única.',
+                precio: 'S/5.00',
+                imagen: 'img/cold-brew.jpg'
+            },
+            'iced-latte': {
+                nombre: 'Iced Latte',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Latte servido sobre hielo con leche fría. Cremoso y refrescante, perfecto para tardes calurosas.',
+                precio: 'S/5.25',
+                imagen: 'img/iced-latte.jpg'
+            },
+            'iced-americano': {
+                nombre: 'Iced Americano',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Americano servido sobre hielo. Fuerte, refrescante y vigorizante. La frescura del café puro.',
+                precio: 'S/4.00',
+                imagen: 'img/iced-americano.jpg'
+            },
+            'lemonade-coffee': {
+                nombre: 'Lemonade Coffee',
+                categoria: 'Bebidas Frías',
+                descripcion: 'Café mezclado con limonada refrescante. Una combinación única y sorprendente. Perfecto para experimentar nuevos sabores.',
+                precio: 'S/5.50',
+                imagen: 'img/lemonade-coffee.jpg'
+            },
+
+            // BEBIDAS ESPECIALES
+            'caramelo-latte': {
+                nombre: 'Caramelo Latte',
+                categoria: 'Bebidas Especiales',
+                descripcion: 'Latte con delicioso jarabe de caramelo. Dulce, cremoso y reconfortante. Una indulgencia perfecta.',
+                precio: 'S/5.50',
+                imagen: 'img/caramelo-latte.jpg'
+            },
+            'vainilla-latte': {
+                nombre: 'Vainilla Latte',
+                categoria: 'Bebidas Especiales',
+                descripcion: 'Latte con esencia de vainilla natural. Suave, aromático y deliciosamente dulce. Un clásico favorito.',
+                precio: 'S/5.50',
+                imagen: 'img/vainilla-latte.jpg'
+            },
+            'cafe-irlandes': {
+                nombre: 'Café Irlandés',
+                categoria: 'Bebidas Especiales',
+                descripcion: 'Café con whisky irlandés y crema batida. Una bebida elegante y sofisticada para ocasiones especiales.',
+                precio: 'S/6.50',
+                imagen: 'img/cafe-irlandes.jpg'
+            },
+            'white-mocha': {
+                nombre: 'White Mocha',
+                categoria: 'Bebidas Especiales',
+                descripcion: 'Mocha con chocolate blanco premium. Dulce, cremoso y único. Una experiencia diferente para los amantes del chocolate.',
+                precio: 'S/5.75',
+                imagen: 'img/white-mocha.jpg'
+            },
+            'pistacho-latte': {
+                nombre: 'Pistacho Latte',
+                categoria: 'Bebidas Especiales',
+                descripcion: 'Latte con jarabe de pistacho natural. Cremoso, aromático y con un toque de nuez. Una bebida única y sofisticada.',
+                precio: 'S/6.00',
+                imagen: 'img/pistacho-latte.jpg'
+            },
+
+            // PRODUCTOS - CAFÉ EN GRANO/MOLIDO
+            'cafe-colono': {
+                nombre: 'Café El Colono',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Café originario de Oxapampa - Artesanal. Peso: 500gr - molido. Sabor intenso y aromático, perfecto para preparar en casa.',
+                precio: 'S/28.50',
+                imagen: 'img/cafe-colono.jpg'
+            },
+            'cafe-donshanty': {
+                nombre: 'Café Don Shanty',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Café molido medio Caturra de 250gr. Aroma: frutos secos. Sabor: vainilla, final dulce. Un café premium de calidad excepcional.',
+                precio: 'S/34.25',
+                imagen: 'img/cafe-donshanty.jpg'
+            },
+            'cafe-santarosa': {
+                nombre: 'Café Santa Rosa',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Café Finca Santa Rosa de Villa Rica - Oxapampa. Tostado y molido Premium Orgánico 250gr. Sabor equilibrado y natural.',
+                precio: 'S/27.50',
+                imagen: 'img/cafe-santarosa.jpg'
+            },
+            'cafe-tiroles': {
+                nombre: 'Café El Tirolés',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Café producto artesanal de la mejor calidad. Directo desde la emblemática cafetería El Tirolés. Sabor auténtico peruano.',
+                precio: 'S/33.00',
+                imagen: 'img/cafe-tiroles.jpg'
+            },
+            'cafe-villarica': {
+                nombre: 'Café Villa Rica',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Café tostado y molido artesanal. Café para pasar importado de 250gr. Calidad garantizada de la selva peruana.',
+                precio: 'S/28.00',
+                imagen: 'img/cafe-villarica.jpg'
+            },
+            'cafe-activa': {
+                nombre: 'Activa Café',
+                categoria: 'Café en Grano/Molido',
+                descripcion: 'Producido en la finca D\'Kars. 3 sabores tostado de 250gr. Variedad única con perfiles de sabor diferenciados.',
+                precio: 'S/25.75',
+                imagen: 'img/cafe-activa.jpg'
+            }
+        };
+
+        let cantidadActual = 1;
+        let productoActual = null;
+
+        // Mostrar detalle del producto
+        function mostrarDetalle(productoId) {
+            productoActual = productoId;
+            const producto = productos[productoId];
+            
+            document.getElementById('productosView').classList.add('hidden');
+            document.getElementById('detalleView').classList.add('active');
+            
+            document.getElementById('breadcrumbCategoria').textContent = producto.categoria;
+            document.getElementById('breadcrumbProducto').textContent = producto.nombre;
+            document.getElementById('detalleImagen').src = producto.imagen;
+            document.getElementById('detalleImagen').alt = producto.nombre;
+            document.getElementById('detalleTitulo').textContent = producto.nombre;
+            document.getElementById('detalleDescripcion').textContent = producto.descripcion;
+            document.getElementById('detallePrecio').textContent = producto.precio;
+            
+            cantidadActual = 1;
+            document.getElementById('cantidadInput').value = 1;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Volver a la vista de productos
+        function volverAProductos() {
+            document.getElementById('detalleView').classList.remove('active');
+            document.getElementById('productosView').classList.remove('hidden');
+        }
+
+        // Cambiar cantidad
+        function cambiarCantidad(delta) {
+            cantidadActual = Math.max(1, cantidadActual + delta);
+            document.getElementById('cantidadInput').value = cantidadActual;
+        }
+
+        // Agregar y seguir comprando
+        function agregarYSeguir() {
+            const producto = productos[productoActual];
+            alert(`✅ Agregado al carrito:\n${cantidadActual}x ${producto.nombre} - ${producto.precio}`);
+            volverAProductos();
+        }
+
+        // Agregar al carrito
+        function agregarAlCarrito() {
+            const producto = productos[productoActual];
+            alert(`✅ Agregado al carrito:\n${cantidadActual}x ${producto.nombre} - ${producto.precio}\n\n🛒 Ir al carrito para finalizar compra`);
+        }
+
+        // Scroll a categoría
+        function scrollToCategory(categoryId) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const section = document.getElementById(categoryId);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+
 </body>
 </html>

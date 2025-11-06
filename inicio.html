@@ -4,12 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Cafeadictos</title>
-    <link rel="stylesheet" href="css/styles-global.css">
+    <style type="text/css">
+        /* Selector universal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Selector de etiqueta */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5E6D3;
+        }
+        
+        /* Selector de clase para hero section */
+        .hero-section {
+            background-color: #2C1810;
+            width: 100%;
+        }
+        
+        /* Selector de clase para contenedor */
+        .contenedor {
+            width: 90%;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        /* Contenedor flex para el hero */
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        /* Sección de texto del hero */
+        .hero-text {
+            flex: 1;
+        }
+        
+        /* Sección de imagen del hero */
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        /* Selector de clase para titulo principal */
+        .titulo-principal {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 3em;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        /* Selector de clase para frase poetica */
+        .frase-poetica {
+            font-family: Georgia, serif;
+            color: #F5E6D3;
+            font-size: 1.5em;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        
+        /* Selector de clase para caja dorada */
+        .caja-dorada {
+            background-color: #D4AF37;
+            padding: 8px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        /* Selector de clase para texto de caja */
+        .texto-caja {
+            font-family: Arial, sans-serif;
+            color: #2C1810;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        
+        /* Selector de clase para subtitulo */
+        .subtitulo {
+            font-family: Georgia, serif;
+            color: #CD853F;
+            font-size: 2em;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        
+        /* Selector de clase para imagen placeholder */
+        .imagen-placeholder {
+            text-align: center;
+        }
+        
+        .imagen-placeholder img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border: 3px solid #D4AF37;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Selector de clase para seccion caracteristicas */
+        .seccion-caracteristicas {
+            background-color: #F5E6D3;
+            width: 100%;
+            padding: 30px 0;
+        }
+        
+        /* Selector de clase para titulo seccion */
+        .titulo-seccion {
+            font-family: Georgia, serif;
+            color: #8B4513;
+            font-size: 2.5em;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        /* Selector de clase para descripcion */
+        .descripcion {
+            font-family: Arial, sans-serif;
+            color: #654321;
+            font-size: 1em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        /* Grid para las tarjetas */
+        .tarjetas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        /* Selector de clase para tarjeta */
+        .tarjeta {
+            background-color: white;
+            border: 2px solid #D4AF37;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        /* Selector de clase para icono */
+        .icono {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        
+        /* Selector de clase para titulo tarjeta */
+        .titulo-tarjeta {
+            font-family: Georgia, serif;
+            color: #8B4513;
+            font-size: 1.5em;
+            font-weight: bold;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        
+        /* Selector de clase para texto tarjeta */
+        .texto-tarjeta {
+            font-family: Arial, sans-serif;
+            color: #654321;
+            font-size: 1em;
+        }
+        
+        /* Selector de clase para marquee */
+        .marquee-frase {
+            background-color: #8B4513;
+            padding: 20px;
+            margin: 30px auto;
+            width: 80%;
+        }
+        
+        /* Selector de clase para texto marquee */
+        .texto-marquee {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 1.2em;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        /* Selector de clase para estadisticas */
+        .estadisticas {
+            margin: 40px auto;
+            width: 70%;
+        }
+        
+        /* Grid para las estadísticas */
+        .estadisticas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        /* Selector de clase para caja estadistica */
+        .caja-estadistica {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Selector de clase para estadistica marron */
+        .estadistica-marron {
+            background-color: #8B4513;
+        }
+        
+        /* Selector de clase para estadistica dorada */
+        .estadistica-dorada {
+            background-color: #D4AF37;
+        }
+        
+        /* Selector de clase para numero estadistica */
+        .numero-estadistica {
+            font-family: Georgia, serif;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        /* Selector de clase para texto estadistica */
+        .texto-estadistica {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            font-style: italic;
+        }
+        
+        /* Colores para estadisticas */
+        .estadistica-marron .numero-estadistica,
+        .estadistica-marron .texto-estadistica {
+            color: #D4AF37;
+        }
+        
+        .estadistica-dorada .numero-estadistica,
+        .estadistica-dorada .texto-estadistica {
+            color: #2C1810;
+        }
+        
+        .estadistica-marron .texto-estadistica {
+            color: #F5E6D3;
+        }
+
+        /* Estilos para el FOOTER principal */
+        .main-footer {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .main-footer p {
+            margin: 5px 0;
+        }
+
+        .main-footer .copyright {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .main-footer .social-text {
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 16px;
+        }
+
+        .main-footer .social-links {
+            margin-top: 10px;
+        }
+
+        .main-footer .social-links a {
+            font-family: "Arial", sans-serif;
+            color: #D4AF37;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .main-footer .social-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="contenedor">
-            <div class="hero-grid">
+            <div class="hero-content">
+                <!-- Texto del Hero -->
                 <div class="hero-text">
                     <h1 class="titulo-principal">CAFEADICTOS</h1>
                     <p class="frase-poetica">"Donde cada grano cuenta su historia<br>y cada taza despierta emociones"</p>
@@ -21,6 +309,7 @@
                     <h2 class="subtitulo">El Arte del Café Perfecto</h2>
                 </div>
                 
+                <!-- Imagen del Hero -->
                 <div class="hero-image">
                     <div class="imagen-placeholder">
                         <img src="img/cafe.jpg" alt="Café Artesanal" width="600" height="400">
@@ -30,12 +319,14 @@
         </div>
     </section>
     
+    <!-- Sección de Características -->
     <section class="seccion-caracteristicas">
         <div class="contenedor">
             <h2 class="titulo-seccion">Una Experiencia Sensorial Única</h2>
             <p class="descripcion">Sumérgete en el mundo del café artesanal donde tradición e innovación se encuentran</p>
             
-            <div class="caracteristicas-grid">
+            <!-- Grid de Tarjetas -->
+            <div class="tarjetas-grid">
                 <div class="tarjeta">
                     <div class="icono">☕</div>
                     <h3 class="titulo-tarjeta">Granos Selectos</h3>
@@ -55,22 +346,26 @@
                 </div>
             </div>
             
+            <!-- Marquee con Frase -->
             <div class="marquee-frase">
                 <marquee behavior="alternate" scrollamount="3">
                     <span class="texto-marquee">✨ "Más que una bebida, un ritual de placer" ✨</span>
                 </marquee>
             </div>
             
+            <!-- Estadísticas -->
             <div class="estadisticas">
                 <div class="estadisticas-grid">
                     <div class="caja-estadistica estadistica-marron">
                         <div class="numero-estadistica">1000+</div>
                         <div class="texto-estadistica">Tazas de Felicidad</div>
                     </div>
+                    
                     <div class="caja-estadistica estadistica-dorada">
                         <div class="numero-estadistica">2023</div>
                         <div class="texto-estadistica">Año de Fundación</div>
                     </div>
+                    
                     <div class="caja-estadistica estadistica-marron">
                         <div class="numero-estadistica">100%</div>
                         <div class="texto-estadistica">Satisfacción Garantizada</div>
@@ -80,17 +375,18 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="main-footer">
-        <div class="footer-container">
+        <div>
             <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
             
             <p class="social-text">Síguenos en nuestras redes sociales</p>
             
-            <p class="social-links">
+            <div class="social-links">
                 <a href="#">Facebook</a> |
                 <a href="#">Instagram</a> |
                 <a href="#">TikTok</a>
-            </p>
+            </div>
         </div>
     </footer>
 </body>

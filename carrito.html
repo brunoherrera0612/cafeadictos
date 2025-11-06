@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Cafeadictos</title>
+
+    <style type="text/css">
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F5E6D3;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        .header-principal {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .titulo-principal {
+            font-family: Georgia, serif;
+            color: #D4AF37;
+            font-size: 2.5em;
+            font-style: italic;
+        }
+
+        /* Contenedor principal */
+        .contenedor-carrito {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Columna de productos (izquierda) */
+        .productos-carrito {
+            flex: 1 1 65%;
+            min-width: 300px;
+        }
+
+        /* Columna del resumen (derecha) */
+        .resumen-carrito {
+            flex: 1 1 30%;
+            min-width: 300px;
+        }
+
+        /* Tarjeta */
+        .tarjeta {
+            background-color: #FFFFFF;
+            border: 3px solid #D4AF37;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .titulo-seccion {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 1.8em;
+            font-style: italic;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Carrito vacío */
+        .carrito-vacio {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .carrito-vacio-icono {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .carrito-vacio-texto {
+            color: #654321;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Item del carrito */
+        .item-carrito {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            border-bottom: 2px solid #F5E6D3;
+            margin-bottom: 15px;
+        }
+
+        .item-carrito:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .item-imagen {
+            flex-shrink: 0;
+        }
+
+        .item-imagen img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #D4AF37;
+            object-fit: cover;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-nombre {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .item-precio-unitario {
+            color: #654321;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        /* Controles de cantidad */
+        .item-cantidad {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cantidad {
+            background-color: #D4AF37;
+            color: #2C1810;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-cantidad:hover {
+            background-color: #C19A2E;
+        }
+
+        .cantidad-numero {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2C1810;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Subtotal y eliminar */
+        .item-acciones {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .item-subtotal {
+            font-family: Georgia, serif;
+            color: #2C1810;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .btn-eliminar {
+            background-color: #8B4513;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #6B3410;
+        }
+
+        /* Resumen del pedido */
+        .resumen-contenido {
+            background-color: #F5E6D3;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .resumen-linea {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            color: #2C1810;
+            font-size: 1em;
+        }
+
+        .resumen-linea.total {
+            border-top: 2px solid #D4AF37;
+            padding-top: 12px;
+            margin-top: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2C1810;
+        }
+
+        /* Cupón de descuento */
+        .cupon-container {
+            margin-bottom: 20px;
+        }
+
+        .cupon-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cupon-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #D4AF37;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .btn-cupon {
+            background-color: #8B4513;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cupon:hover {
+            background-color: #6B3410;
+        }
+
+        /* Botones principales */
+        .botones-accion {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-principal {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-finalizar {
+            background-color: #D4AF37;
+            color: #2C1810;
+        }
+
+        .btn-finalizar:hover {
+            background-color: #C19A2E;
+        }
+
+        .btn-seguir {
+            background-color: #FFFFFF;
+            color: #2C1810;
+            border: 2px solid #D4AF37;
+        }
+
+        .btn-seguir:hover {
+            background-color: #F5E6D3;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .main-footer p {
+            margin: 5px 0;
+        }
+
+        .main-footer .copyright {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .main-footer .social-text {
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 16px;
+        }
+
+        .main-footer .social-links a {
+            font-family: "Arial", sans-serif;
+            color: #D4AF37;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .main-footer .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .item-carrito {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .item-acciones {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1 class="titulo-principal">🛒 MI CARRITO</h1>
+    </header>
+
+    <div class="contenedor-carrito">
+        
+        <!-- Columna de Productos -->
+        <section class="productos-carrito">
+            <div class="tarjeta">
+                <h2 class="titulo-seccion">📦 Productos en tu carrito</h2>
+                
+                <!-- Ejemplo de productos en el carrito -->
+                <article class="item-carrito">
+                    <div class="item-imagen">
+                        <img src="https://via.placeholder.com/100" alt="Espresso">
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-nombre">Espresso</h3>
+                        <p class="item-precio-unitario">Precio unitario: S/3.50</p>
+                        <div class="item-cantidad">
+                            <button class="btn-cantidad">−</button>
+                            <span class="cantidad-numero">2</span>
+                            <button class="btn-cantidad">+</button>
+                        </div>
+                    </div>
+                    <div class="item-acciones">
+                        <span class="item-subtotal">S/7.00</span>
+                        <button class="btn-eliminar">🗑️ Eliminar</button>
+                    </div>
+                </article>
+
+                <article class="item-carrito">
+                    <div class="item-imagen">
+                        <img src="https://via.placeholder.com/100" alt="Cappuccino">
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-nombre">Cappuccino</h3>
+                        <p class="item-precio-unitario">Precio unitario: S/4.25</p>
+                        <div class="item-cantidad">
+                            <button class="btn-cantidad">−</button>
+                            <span class="cantidad-numero">1</span>
+                            <button class="btn-cantidad">+</button>
+                        </div>
+                    </div>
+                    <div class="item-acciones">
+                        <span class="item-subtotal">S/4.25</span>
+                        <button class="btn-eliminar">🗑️ Eliminar</button>
+                    </div>
+                </article>
+
+                <article class="item-carrito">
+                    <div class="item-imagen">
+                        <img src="https://via.placeholder.com/100" alt="Latte">
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-nombre">Latte</h3>
+                        <p class="item-precio-unitario">Precio unitario: S/4.75</p>
+                        <div class="item-cantidad">
+                            <button class="btn-cantidad">−</button>
+                            <span class="cantidad-numero">1</span>
+                            <button class="btn-cantidad">+</button>
+                        </div>
+                    </div>
+                    <div class="item-acciones">
+                        <span class="item-subtotal">S/4.75</span>
+                        <button class="btn-eliminar">🗑️ Eliminar</button>
+                    </div>
+                </article>
+
+                <!-- Opción cuando el carrito está vacío (comentado para ejemplo)
+                <div class="carrito-vacio">
+                    <div class="carrito-vacio-icono">🛒</div>
+                    <p class="carrito-vacio-texto">Tu carrito está vacío 😢</p>
+                    <p class="carrito-vacio-texto">¡Explora nuestro delicioso menú!</p>
+                    <a href="menu.html" class="btn-principal btn-finalizar" style="max-width: 300px; margin: 20px auto;">Ver Menú</a>
+                </div>
+                -->
+            </div>
+        </section>
+
+        <!-- Columna del Resumen -->
+        <aside class="resumen-carrito">
+            
+            <!-- Resumen del Pedido -->
+            <div class="tarjeta">
+                <h2 class="titulo-seccion">💰 Resumen del Pedido</h2>
+                
+                <div class="resumen-contenido">
+                    <div class="resumen-linea">
+                        <span>Subtotal:</span>
+                        <span>S/16.00</span>
+                    </div>
+                    <div class="resumen-linea">
+                        <span>Delivery:</span>
+                        <span>S/5.00</span>
+                    </div>
+                    <div class="resumen-linea">
+                        <span>Descuento:</span>
+                        <span style="color: #D4AF37;">−S/0.00</span>
+                    </div>
+                    <div class="resumen-linea total">
+                        <span>TOTAL:</span>
+                        <span>S/21.00</span>
+                    </div>
+                </div>
+
+                <!-- Cupón de descuento -->
+                <div class="cupon-container">
+                    <p style="color: #654321; margin-bottom: 10px; font-size: 0.95em;">¿Tienes un cupón de descuento?</p>
+                    <div class="cupon-input">
+                        <input type="text" placeholder="Ingresa tu código">
+                        <button class="btn-cupon">Aplicar</button>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="botones-accion">
+                    <a href="#" class="btn-principal btn-finalizar">✓ Finalizar Pedido</a>
+                    <a href="menu.html" class="btn-principal btn-seguir">← Seguir Comprando</a>
+                </div>
+            </div>
+
+            <!-- Información adicional -->
+            <div class="tarjeta">
+                <h3 style="color: #2C1810; font-size: 1.1em; margin-bottom: 10px; font-family: Georgia, serif;">📋 Información de Entrega</h3>
+                <p style="color: #654321; font-size: 0.9em; line-height: 1.6;">
+                    • Delivery disponible en todo Lima<br>
+                    • Tiempo estimado: 30-45 minutos<br>
+                    • Pago en efectivo o transferencia<br>
+                    • Pedido mínimo: S/10.00
+                </p>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
+        <p class="social-text">Síguenos en nuestras redes sociales</p>
+        <p class="social-links">
+            <a href="#">Facebook</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">TikTok</a>
+        </p>
+    </footer>
+
+</body>
+</html>

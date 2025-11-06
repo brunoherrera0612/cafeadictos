@@ -4,103 +4,318 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promociones - Cafeadictos</title>
-    <link rel="stylesheet" href="css/styles-global.css">
+    <style type="text/css">
+        body {
+            background-color: #F5E6D3;
+            margin: 0; /* Equivalente a marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" */
+        }
+
+        /* Estilos para el encabezado principal */
+        .header-banner {
+            background-color: #3D220B;
+            text-align: center;
+        }
+
+        .header-banner h2 {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 36px; /* Equivalente a size="6" */
+            font-style: italic;
+            margin: 0; /* Eliminar margen predeterminado del h2 */
+            padding: 15px 0; /* Añadir padding para espaciar el texto */
+        }
+
+        /* Estilos para las tablas principales de contenido */
+        .main-content-table {
+            width: 95%;
+            margin: 20px auto; /* Centrar la tabla y añadir margen superior/inferior */
+            border-collapse: separate; /* Para que cellspacing funcione visualmente */
+            border-spacing: 15px; /* Equivalente a cellspacing="15" */
+        }
+
+        /* Estilos para las celdas de las ofertas y el programa de lealtad */
+        .promo-card {
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .promo-card-inner {
+            background-color: #FFFFFF;
+            border: 3px solid #D4AF37;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .promo-card-inner h2 {
+            font-family: "Georgia", serif;
+            color: #2C1810;
+            font-size: 24px; /* Equivalente a size="5" */
+            font-style: italic;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .promo-card-inner h3 {
+            font-family: "Georgia", serif;
+            color: #2C1810;
+            font-size: 20px; /* Equivalente a size="4" */
+            font-style: italic;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para la tabla de ofertas semanales */
+        .weekly-offers-table {
+            width: 100%;
+            background-color: #F5E6D3;
+            border: 2px solid #D4AF37;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .weekly-offers-table td {
+            padding: 12px;
+            text-align: center;
+            font-family: "Arial", sans-serif;
+            color: #2C1810;
+            font-size: 16px; /* Equivalente a size="3" */
+        }
+
+        .weekly-offers-table td b {
+            font-weight: bold;
+        }
+
+        /* Estilos para el marquee */
+        .promo-marquee {
+            background-color: #D4AF37;
+            width: 100%;
+            margin-top: 20px;
+            padding: 5px 0; /* Añadir padding para el texto del marquee */
+        }
+
+        .promo-marquee font { /* Se mantiene la etiqueta font dentro del marquee para el color y tamaño */
+            font-family: "Georgia", serif;
+            color: #2C1810;
+            font-size: 16px; /* Equivalente a size="3" */
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* Estilos para el programa de lealtad */
+        .loyalty-program p {
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #654321;
+            margin-bottom: 20px;
+        }
+
+        .loyalty-benefits-table {
+            background-color: #F5E6D3;
+            padding: 15px;
+            border: 2px solid #D4AF37;
+            width: 90%;
+            margin: 0 auto; /* Centrar la tabla de beneficios */
+        }
+
+        .loyalty-benefits-table td {
+            text-align: center;
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #2C1810;
+        }
+
+        .loyalty-benefits-table td b {
+            font-weight: bold;
+        }
+
+        /* Estilos para el formulario */
+        .loyalty-form-table {
+            margin-top: 20px;
+        }
+
+        .loyalty-form-table td {
+            font-family: "Arial", sans-serif;
+            color: #2C1810;
+            font-size: 16px; /* Equivalente a size="3" */
+            padding: 8px;
+        }
+
+        .loyalty-form-table td b {
+            font-weight: bold;
+        }
+
+        .loyalty-form-table input[type="text"],
+        .loyalty-form-table input[type="email"] {
+            width: 180px; /* Ajustar el ancho de los campos de entrada */
+            padding: 5px;
+            border: 1px solid #D4AF37;
+        }
+
+        .loyalty-form-table input[type="submit"] {
+            background-color: #D4AF37;
+            color: #2C1810;
+            padding: 10px 20px;
+            border: 2px solid #2C1810;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px; /* Espacio superior para el botón */
+        }
+
+        /* Estilos para el FOOTER principal */
+        .main-footer {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0; /* Añadir padding para espaciar el contenido */
+            margin-top: 30px; /* Espacio entre el contenido principal y el footer */
+        }
+
+        .main-footer p {
+            margin: 5px 0; /* Espacio entre párrafos */
+        }
+
+        .main-footer .copyright {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 20px; /* Equivalente a size="4" */
+            font-weight: bold;
+        }
+
+        .main-footer .social-text {
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 16px; /* Equivalente a size="3" */
+        }
+
+        .main-footer .social-links a {
+            font-family: "Arial", sans-serif;
+            color: #D4AF37;
+            font-size: 16px; /* Equivalente a size="3" */
+            text-decoration: none; /* Quitar subrayado de enlaces */
+            margin: 0 5px; /* Espacio entre enlaces */
+        }
+
+        .main-footer .social-links a:hover {
+            text-decoration: underline; /* Subrayar al pasar el ratón */
+        }
+
+        /* Estilos para el banner marquee */
+        .banner-marquee {
+            background-color: #D4AF37;
+            padding: 10px 0;
+            color: #2C1810;
+            font-family: "Arial", sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="promociones-page">
-    <header class="header-banner">
-        <h2><i>PROMOCIONES ESPECIALES</i></h2>
-    </header>
+<body class="body-style">
 
-    <main class="promociones-main">
-        <div class="promociones-grid">
-            <section class="promo-card">
-                <div class="promo-card-inner">
-                    <h2><i>🗓️ Ofertas Semanales</i></h2>
-                    
-                    <div class="weekly-offers">
-                        <div class="offer-item">
-                            <p><b>LUNES:</b> 2x1 en Espressos ☕</p>
-                        </div>
-                        <div class="offer-item">
-                            <p><b>MIÉRCOLES:</b> 30% OFF Cappuccinos 🥛</p>
-                        </div>
-                        <div class="offer-item">
-                            <p><b>VIERNES:</b> Compra 4, lleva 5 ☕</p>
-                        </div>
-                        <div class="offer-item">
-                            <p><b>SÁBADO:</b> Kids Drink FREE 🧑</p>
-                        </div>
-                    </div>
-                    
-                    <div class="promo-marquee-container">
-                        <marquee behavior="alternate" scrollamount="2" class="promo-marquee">
-                            <b><i>¡Válido todo el mes!</i></b>
-                        </marquee>
-                    </div>
-                </div>
-            </section>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="header-banner">
+        <tr>
+            <td>
+                <h2><i>PROMOCIONES ESPECIALES</i></h2>
+            </td>
+        </tr>
+    </table>
+
+    <table class="main-content-table" cellpadding="20" cellspacing="15" border="0">
+        <tr>
+            <td class="promo-card">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="promo-card-inner">
+                    <tr>
+                        <td>
+                            <h2><i>🗓️ Ofertas Semanales</i></h2>
+                            
+                            <table class="weekly-offers-table" cellpadding="12" cellspacing="0">
+                                <tr><td><b>LUNES:</b> 2x1 en Espressos ☕</td></tr>
+                                <tr><td><b>MIÉRCOLES:</b> 30% OFF Cappuccinos 🥛</td></tr>
+                                <tr><td><b>VIERNES:</b> Compra 4, lleva 5 ☕</td></tr>
+                                <tr><td><b>SÁBADO:</b> Kids Drink FREE 🧒</td></tr>
+                            </table>
+                            
+                            <br>
+                            <marquee behavior="alternate" scrollamount="2" class="promo-marquee">
+                                <font><b><i>¡Válido todo el mes!</i></b></font>
+                            </marquee>
+                        </td>
+                    </tr>
+                </table>
+            </td>
             
-            <section class="promo-card">
-                <div class="promo-card-inner">
-                    <h3 class="subtitulo-tarjeta">🎁 Promociones Especiales</h3>
-                    
-                    <div class="special-promos">
-                        <div class="promo-detail">
-                            <p><b>🌅 HAPPY MORNING (6AM - 9AM)</b></p>
-                            <p>Café americano + croissant por $4.99</p>
-                        </div>
-                        
-                        <div class="promo-detail">
-                            <p><b>👥 PROMO AMIGOS</b></p>
-                            <p>4 cappuccinos por el precio de 3</p>
-                        </div>
-                        
-                        <div class="promo-detail">
-                            <p><b>📱 DESCUENTO APP</b></p>
-                            <p>15% OFF en tu primera orden por app</p>
-                        </div>
-                        
-                        <div class="promo-detail">
-                            <p><b>🎂 CUMPLEAÑEROS</b></p>
-                            <p>Café gratis en tu día especial</p>
-                        </div>
-                        
-                        <div class="promo-detail">
-                            <p><b>🎓 ESTUDIANTES</b></p>
-                            <p>10% de descuento con ID vigente</p>
-                        </div>
-                    </div>
-                    
-                    <div class="promo-marquee-container">
-                        <marquee behavior="scroll" scrollamount="2" class="promo-marquee">
-                            <b>🎉 Presenta este anuncio y obtén 5% extra en cualquier promoción 🎉</b>
-                        </marquee>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+            <td class="promo-card">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="promo-card-inner">
+                    <tr>
+                        <td>
+                            <h3 class="subtitulo-tarjeta">🎁 Promociones Especiales</h3>
+                            
+                            <table class="loyalty-benefits-table">
+                                <tr>
+                                    <td>
+                                        <b>🌅 HAPPY MORNING (6AM - 9AM)</b><br>
+                                        Café americano + croissant por $4.99<br><br>
+                                        
+                                        <b>👥 PROMO AMIGOS</b><br>
+                                        4 cappuccinos por el precio de 3<br><br>
+                                        
+                                        <b>📱 DESCUENTO APP</b><br>
+                                        15% OFF en tu primera orden por app<br><br>
+                                        
+                                        <b>🎂 CUMPLEAÑEROS</b><br>
+                                        Café gratis en tu día especial<br><br>
+                                        
+                                        <b>🎓 ESTUDIANTES</b><br>
+                                        10% de descuento con ID vigente
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <div style="margin-top: 20px;">
+                                <marquee behavior="scroll" scrollamount="2" class="promo-marquee">
+                                    <font><b>🎉 Presenta este anuncio y obtén 5% extra en cualquier promoción 🎉</b></font>
+                                </marquee>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 
-    <div class="banner-marquee">
-        <marquee scrollamount="2" direction="left">
-            ☕ Espresso $3.50 | 🥛 Cappuccino $4.25 | 🥤 Latte $4.75 | 
-            ☕ Americano $3.25 | 🍫 Mocha $5.25 | 🧊 Frappé $5.75 |
-            🌟 ¡Inicia sesión para ver precios especiales con hasta 30% de descuento! 🌟
-        </marquee>
-    </div>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="banner-marquee">
+                <marquee scrollamount="2" direction="left">
+                    ☕ Espresso $3.50 | 🥛 Cappuccino $4.25 | 🍶 Latte $4.75 | 
+                    ☕ Americano $3.25 | 🍫 Mocha $5.25 | 🧊 Frappé $5.75 |
+                    🌟 ¡Inicia sesión para ver precios especiales con hasta 30% de descuento! 🌟
+                </marquee>
+            </td>
+        </tr>
+    </table>
 
+    <!-- FOOTER INTEGRADO -->
     <footer class="main-footer">
-        <div class="footer-container">
-            <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
-            
-            <p class="social-text">Síguenos en nuestras redes sociales</p>
-            
-            <p class="social-links">
-                <a href="#">Facebook</a> |
-                <a href="#">Instagram</a> |
-                <a href="#">TikTok</a>
-            </p>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <center>
+                        <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
+                        
+                        <p class="social-text">Síguenos en nuestras redes sociales</p>
+                        
+                        <p class="social-links">
+                            <a href="#">Facebook</a> |
+                            <a href="#">Instagram</a> |
+                            <a href="#">TikTok</a>
+                        </p>
+                    </center>
+                </td>
+            </tr>
+        </table>
     </footer>
+
 </body>
 </html>

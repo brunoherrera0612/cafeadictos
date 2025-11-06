@@ -4,164 +4,522 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Cafeadictos</title>
-    <link rel="stylesheet" href="css/styles-global.css">
+    <style type="text/css">
+        body {
+            background-color: #F5E6D3;
+            margin: 0; /* Equivalente a marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" */
+            display: flex; /* Para que el footer se pegue al final */
+            flex-direction: column; /* Para que el contenido y el footer se apilen */
+            min-height: 100vh; /* Asegura que el body ocupe al menos el alto de la ventana */
+        }
+
+        /* Contenedor principal para el contenido, para empujar el footer hacia abajo */
+        .main-content-wrapper {
+            flex-grow: 1; /* Permite que el contenido crezca y empuje el footer */
+        }
+
+        /* Estilos para el encabezado principal */
+        .header-banner {
+            background-color: #3D220B;
+            text-align: center;
+        }
+
+        .header-banner h2 {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 36px; /* Equivalente a size="6" */
+            font-style: italic;
+            margin: 0; /* Eliminar margen predeterminado del h2 */
+            padding: 15px 0; /* Añadir padding para espaciar el texto */
+        }
+
+        /* Estilos para las tablas principales de contenido */
+        .main-content-table {
+            width: 95%;
+            margin: 20px auto; /* Centrar la tabla y añadir margen superior/inferior */
+            border-collapse: separate; /* Para que cellspacing funcione visualmente */
+            border-spacing: 15px; /* Equivalente a cellspacing="15" */
+        }
+
+        /* Estilos para las celdas de las secciones de contacto */
+        .contact-card {
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .contact-card-inner {
+            background-color: #FFFFFF;
+            border: 3px solid #D4AF37;
+            padding: 20px;
+        }
+
+        .contact-card-inner h2 {
+            font-family: "Georgia", serif;
+            color: #2C1810;
+            font-size: 20px; /* Equivalente a size="4" */
+            font-style: italic;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .contact-card-inner h4 {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 16px; /* Equivalente a size="3" */
+            font-style: italic;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el formulario de contacto */
+        .contact-form-table {
+            width: 100%;
+        }
+
+        .contact-form-table td {
+            padding: 8px;
+            font-family: "Arial", sans-serif;
+            color: #2C1810;
+            font-size: 16px; /* Equivalente a size="3" */
+        }
+
+        .contact-form-table td b {
+            font-weight: bold;
+        }
+
+        .contact-form-table input[type="text"],
+        .contact-form-table input[type="email"],
+        .contact-form-table input[type="tel"],
+        .contact-form-table select,
+        .contact-form-table textarea {
+            width: calc(100% - 10px); /* Ajustar ancho con padding */
+            padding: 5px;
+            border: 1px solid #D4AF37;
+            box-sizing: border-box; /* Incluir padding y border en el ancho */
+        }
+
+        .contact-form-table textarea {
+            resize: vertical; /* Permitir redimensionar verticalmente */
+        }
+
+        .contact-form-table label {
+            font-family: "Arial", sans-serif;
+            font-size: 12px; /* Equivalente a size="2" */
+            color: #654321;
+        }
+
+        .contact-form-table input[type="submit"] {
+            background-color: #D4AF37;
+            color: #2C1810;
+            padding: 8px 15px;
+            border: 2px solid #2C1810;
+            font-weight: bold;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .contact-form-table input[type="reset"] {
+            background-color: #2C1810;
+            color: #D4AF37;
+            padding: 8px 15px;
+            border: 2px solid #D4AF37;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Estilos para la información de contacto */
+        .contact-info p {
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #654321;
+            margin-bottom: 10px;
+        }
+
+        .contact-info p b {
+            font-weight: bold;
+            color: #2C1810; /* Color para los títulos de la información */
+        }
+
+        /* Estilos para métodos de pago */
+        .payment-methods-table {
+            background-color: #F5E6D3;
+            border: 1px solid #D4AF37;
+            padding: 10px;
+            width: 100%;
+            border-collapse: collapse; /* Para bordes de celda */
+            margin-top: 15px;
+        }
+
+        .payment-methods-table td {
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #2C1810;
+            padding: 5px;
+        }
+
+        /* Estilos para horarios de atención */
+        .hours-table {
+            background-color: #F5E6D3;
+            border: 2px solid #D4AF37;
+            padding: 0;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .hours-table th, .hours-table td {
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #2C1810;
+            padding: 12px;
+            border: 1px solid #D4AF37; /* Añadir bordes a las celdas */
+        }
+
+        .hours-table th {
+            background-color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .hours-table td b {
+            font-weight: bold;
+        }
+
+        .hours-table td:last-child { /* Horarios */
+            color: #654321;
+        }
+
+        .hours-footer-content { /* Renombrado para evitar conflicto con la etiqueta footer */
+            background-color: #2C1810;
+            padding: 15px;
+            border: 2px solid #D4AF37;
+            width: 90%;
+            margin: 20px auto 0; /* Centrar y dar espacio */
+            text-align: center;
+        }
+
+        .hours-footer-content p:first-child { /* Selector para el primer párrafo dentro del footer de horarios */
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 16px; /* Equivalente a size="3" */
+            font-style: italic;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .hours-footer-content p:last-child { /* Selector para el segundo párrafo dentro del footer de horarios */
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 12px; /* Equivalente a size="2" */
+            margin-top: 0;
+        }
+
+        /* Estilos para el servicio de delivery */
+        .delivery-info-table {
+            background-color: #F5E6D3;
+            border: 1px solid #D4AF37;
+            padding: 15px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .delivery-info-table td {
+            font-family: "Arial", sans-serif;
+            font-size: 16px; /* Equivalente a size="3" */
+            color: #2C1810;
+            padding: 5px;
+        }
+
+        .delivery-info-table td b {
+            font-weight: bold;
+        }
+
+        .delivery-marquee {
+            background-color: #D4AF37;
+            width: 90%;
+            margin: 20px auto;
+            padding: 5px 0;
+        }
+
+        .delivery-marquee font {
+            font-family: "Arial", sans-serif;
+            color: #2C1810;
+            font-size: 16px; /* Equivalente a size="3" */
+            font-weight: bold;
+        }
+
+        .delivery-phone-table {
+            background-color: #2C1810;
+            padding: 12px;
+            border: 2px solid #D4AF37;
+            width: 90%;
+            margin: 20px auto 0;
+            text-align: center;
+        }
+
+        .delivery-phone-table p:first-child {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 16px; /* Equivalente a size="3" */
+            font-style: italic;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .delivery-phone-table p:last-child {
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 24px; /* Equivalente a size="4" */
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+        /* Estilos para el FOOTER principal */
+        .main-footer {
+            background-color: #3D220B;
+            text-align: center;
+            padding: 20px 0; /* Añadir padding para espaciar el contenido */
+            margin-top: 30px; /* Espacio entre el contenido principal y el footer */
+        }
+
+        .main-footer p {
+            margin: 5px 0; /* Espacio entre párrafos */
+        }
+
+        .main-footer .copyright {
+            font-family: "Georgia", serif;
+            color: #D4AF37;
+            font-size: 20px; /* Equivalente a size="4" */
+            font-weight: bold;
+        }
+
+        .main-footer .social-text {
+            font-family: "Arial", sans-serif;
+            color: #F5E6D3;
+            font-size: 16px; /* Equivalente a size="3" */
+        }
+
+        .main-footer .social-links a {
+            font-family: "Arial", sans-serif;
+            color: #D4AF37;
+            font-size: 16px; /* Equivalente a size="3" */
+            text-decoration: none; /* Quitar subrayado de enlaces */
+            margin: 0 5px; /* Espacio entre enlaces */
+        }
+
+        .main-footer .social-links a:hover {
+            text-decoration: underline; /* Subrayar al pasar el ratón */
+        }
+    </style>
 </head>
-<body class="contacto-page">
+<body>
+
+    <!-- Contenedor para el contenido principal, para empujar el footer hacia abajo -->
     <div class="main-content-wrapper">
-        <header class="header-banner">
-            <h2><i>CONTÁCTANOS</i></h2>
-        </header>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="header-banner">
+            <tr>
+                <td>
+                    <h2><i>CONTÁCTANOS</i></h2>
+                </td>
+            </tr>
+        </table>
 
-        <main class="contacto-main">
-            <div class="contacto-grid">
-                <section class="contact-card">
-                    <div class="contact-card-inner">
-                        <h2><i>✉️ Envíanos un Mensaje</i></h2>
-                        <form action="mailto:info@cafeadictos.com" method="post" enctype="text/plain" class="contact-form">
-                            <div class="form-row">
-                                <label for="nombre"><b>Nombre:</b></label>
-                                <input type="text" id="nombre" name="nombre" required>
-                            </div>
-                            
-                            <div class="form-row">
-                                <label for="email"><b>Email:</b></label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            
-                            <div class="form-row">
-                                <label for="telefono"><b>Teléfono:</b></label>
-                                <input type="tel" id="telefono" name="telefono">
-                            </div>
-                            
-                            <div class="form-row">
-                                <label for="asunto"><b>Asunto:</b></label>
-                                <select id="asunto" name="asunto" required>
-                                    <option value="">Selecciona un tema</option>
-                                    <option value="consulta">Consulta General</option>
-                                    <option value="pedido">Realizar Pedido</option>
-                                    <option value="evento">Eventos Especiales</option>
-                                    <option value="queja">Quejas y Sugerencias</option>
-                                    <option value="trabajo">Oportunidades de Trabajo</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-row">
-                                <label for="mensaje"><b>Mensaje:</b></label>
-                                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-                            </div>
-                            
-                            <div class="form-row checkbox-row">
-                                <input type="checkbox" name="newsletter" value="si" id="news">
-                                <label for="news">Recibir ofertas por email</label>
-                            </div>
-                            
-                            <div class="form-buttons">
-                                <input type="submit" value="ENVIAR MENSAJE">
-                                <input type="reset" value="LIMPIAR">
-                            </div>
-                        </form>
-                    </div>
-                </section>
+        <table class="main-content-table" cellpadding="15" cellspacing="15" border="0">
+            <tr>
+                <td class="contact-card">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="contact-card-inner">
+                        <tr>
+                            <td>
+                                <h2><i>✉️ Envíanos un Mensaje</i></h2>
+                                <form action="mailto:info@cafeadictos.com" method="post" enctype="text/plain">
+                                    <table cellpadding="8" cellspacing="0" width="100%" class="contact-form-table">
+                                        <tr>
+                                            <td width="80"><b>Nombre:</b></td>
+                                            <td><input type="text" name="nombre" size="25" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Email:</b></td>
+                                            <td><input type="email" name="email" size="25" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Teléfono:</b></td>
+                                            <td><input type="tel" name="telefono" size="25"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Asunto:</b></td>
+                                            <td>
+                                                <select name="asunto" required>
+                                                    <option value="">Selecciona un tema</option>
+                                                    <option value="consulta">Consulta General</option>
+                                                    <option value="pedido">Realizar Pedido</option>
+                                                    <option value="evento">Eventos Especiales</option>
+                                                    <option value="queja">Quejas y Sugerencias</option>
+                                                    <option value="trabajo">Oportunidades de Trabajo</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top"><b>Mensaje:</b></td>
+                                            <td><textarea name="mensaje" rows="4" cols="28" 
+                                                placeholder="Escribe tu mensaje aquí..." required></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <input type="checkbox" name="newsletter" value="si" id="news">
+                                                <label for="news">Recibir ofertas por email</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="center">
+                                                <br>
+                                                <input type="submit" value="ENVIAR MENSAJE">
+                                                <input type="reset" value="LIMPIAR">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
 
-                <section class="contact-card">
-                    <div class="contact-card-inner contact-info">
-                        <h2><i>📍 Información de Contacto</i></h2>
-                        
-                        <div class="info-item">
-                            <p><b>📍 Dirección:</b><br>Calle del Café 123, Ciudad</p>
-                        </div>
-                        
-                        <div class="info-item">
-                            <p><b>☎️ Teléfono:</b><br>(555) 123-4567</p>
-                        </div>
-                        
-                        <div class="info-item">
-                            <p><b>📧 Email:</b><br>info@cafeadictos.com</p>
-                        </div>
-                        
-                        <div class="info-item">
-                            <p><b>🌐 Web:</b><br>www.cafeadictos.com</p>
-                        </div>
+                <td class="contact-card">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="contact-card-inner contact-info">
+                        <tr>
+                            <td>
+                                <h2><i>📍 Información de Contacto</i></h2>
+                                
+                                <p><b>📍 Dirección:</b><br>Calle del Café 123, Ciudad</p>
+                                <p><b>☎️ Teléfono:</b><br>(555) 123-4567</p>
+                                <p><b>📧 Email:</b><br>info@cafeadictos.com</p>
+                                <p><b>🌐 Web:</b><br>www.cafeadictos.com</p>
 
-                        <h4><i>💳 Métodos de Pago</i></h4>
-                        <div class="payment-methods">
-                            💳 Tarjetas de crédito/débito<br>
-                            📱 PayPal<br>
-                            💰 Efectivo contra entrega<br>
-                            🏦 Transferencia bancaria
-                        </div>
-                    </div>
-                </section>
+                                <br>
 
-                <section class="contact-card">
-                    <div class="contact-card-inner">
-                        <h2><i>🕐 Horarios de Atención</i></h2>
-                        
-                        <div class="hours-table">
-                            <div class="hours-row header-row">
-                                <div class="hours-cell"><b>DÍA</b></div>
-                                <div class="hours-cell"><b>HORARIO</b></div>
-                            </div>
-                            <div class="hours-row">
-                                <div class="hours-cell"><b>Lunes a Viernes</b></div>
-                                <div class="hours-cell">6:00 AM - 9:00 PM</div>
-                            </div>
-                            <div class="hours-row">
-                                <div class="hours-cell"><b>Sábados</b></div>
-                                <div class="hours-cell">7:00 AM - 10:00 PM</div>
-                            </div>
-                            <div class="hours-row">
-                                <div class="hours-cell"><b>Domingos</b></div>
-                                <div class="hours-cell">7:00 AM - 8:00 PM</div>
-                            </div>
-                        </div>
+                                <h4><i>💳 Métodos de Pago</i></h4>
+                                <table border="0" cellpadding="0" cellspacing="0" class="payment-methods-table">
+                                    <tr>
+                                        <td>
+                                            💳 Tarjetas de crédito/débito<br>
+                                            📱 PayPal<br>
+                                            💰 Efectivo contra entrega<br>
+                                            🏦 Transferencia bancaria
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="contact-card">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="contact-card-inner">
+                        <tr>
+                            <td align="center">
+                                <h2><i>🕐 Horarios de Atención</i></h2>
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" class="hours-table">
+                                    <thead>
+                                        <tr>
+                                            <th><b>DÍA</b></th>
+                                            <th><b>HORARIO</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><b>Lunes a Viernes</b></td>
+                                            <td>6:00 AM - 9:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Sábados</b></td>
+                                            <td>7:00 AM - 10:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Domingos</b></td>
+                                            <td>7:00 AM - 8:00 PM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                        <div class="hours-footer">
-                            <p><b><i>¡Siempre abiertos para ti!</i></b></p>
-                            <p>Ven cuando gustes, te esperamos con el mejor café</p>
-                        </div>
-                    </div>
-                </section>
+                                <br><br>
 
-                <section class="contact-card">
-                    <div class="contact-card-inner">
-                        <h2><i>🚚 Servicio de Delivery</i></h2>
-                        
-                        <div class="delivery-info">
-                            <p><b>📍 Cobertura:</b> Ciudad completa y alrededores</p>
-                            <p><b>⏰ Tiempo estimado:</b> 30-45 minutos</p>
-                            <p><b>💵 Costo de envío:</b> $3.99</p>
-                            <p><b>🎉 ENVÍO GRATIS</b> en pedidos superiores a $25</p>
-                        </div>
+                                <table border="0" cellpadding="0" cellspacing="0" class="hours-footer-content">
+                                    <tr>
+                                        <td>
+                                            <p><b><i>¡Siempre abiertos para ti!</i></b></p>
+                                            <p>Ven cuando gustes, te esperamos con el mejor café</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
 
-                        <div class="delivery-marquee">
-                            <marquee behavior="scroll" scrollamount="2" direction="left">
-                                <b>🚚 Delivery Express disponible los 7 días de la semana</b>
-                            </marquee>
-                        </div>
+                <td class="contact-card">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="contact-card-inner">
+                        <tr>
+                            <td align="center">
+                                <h2><i>🚚 Servicio de Delivery</i></h2>
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" class="delivery-info-table">
+                                    <tr>
+                                        <td>
+                                            <b>📍 Cobertura:</b> Ciudad completa y alrededores<br><br>
+                                            <b>⏰ Tiempo estimado:</b> 30-45 minutos<br><br>
+                                            <b>💵 Costo de envío:</b> $3.99<br><br>
+                                            <b>🎉 ENVÍO GRATIS</b> en pedidos superiores a $25
+                                        </td>
+                                    </tr>
+                                </table>
 
-                        <div class="delivery-phone">
-                            <p><b><i>📞 Pedidos por teléfono:</i></b></p>
-                            <p><b>(555) 123-4567</b></p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
+                                <br>
 
+                                <marquee behavior="scroll" scrollamount="2" direction="left" class="delivery-marquee">
+                                    <font><b>🚚 Delivery Express disponible los 7 días de la semana</b></font>
+                                </marquee>
+
+                                <br><br>
+
+                                <table border="0" cellpadding="0" cellspacing="0" class="delivery-phone-table">
+                                    <tr>
+                                        <td>
+                                            <p><b><i>📞 Pedidos por teléfono:</i></b></p>
+                                            <p><b>(555) 123-4567</b></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div> <!-- Cierre de main-content-wrapper -->
+
+    <!-- FOOTER INTEGRADO -->
     <footer class="main-footer">
-        <div class="footer-container">
-            <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
-            
-            <p class="social-text">Síguenos en nuestras redes sociales</p>
-            
-            <p class="social-links">
-                <a href="#">Facebook</a> |
-                <a href="#">Instagram</a> |
-                <a href="#">TikTok</a>
-            </p>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <center>
+                        <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
+                        
+                        <p class="social-text">Síguenos en nuestras redes sociales</p>
+                        
+                        <p class="social-links">
+                            <a href="#">Facebook</a> |
+                            <a href="#">Instagram</a> |
+                            <a href="#">TikTok</a>
+                        </p>
+                    </center>
+                </td>
+            </tr>
+        </table>
     </footer>
+
 </body>
 </html>
