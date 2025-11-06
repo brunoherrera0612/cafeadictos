@@ -3,144 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeadictos - Tu Café Favorito</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Cafeadictos - Pasión por el Buen Café</title>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo"><img src="logo.png" alt="" width="100" height="100"></div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#menu">Menú</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#" onclick="openCart()">🛒 Carrito (<span id="cart-count">0</span>)</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Cafeadictos</h1>
-            <p>El mejor café de la ciudad, donde cada sorbo es una experiencia única</p>
-            <a href="#menu" class="cta-button">Ver Menú</a>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section id="menu">
-        <h2 class="section-title">Nuestro Menú</h2>
-        <div class="menu-grid">
-            <div class="menu-item" onclick="addToCart('Espresso', 3.50)">
-                <div class="menu-item-image">☕</div>
-                <div class="menu-item-content">
-                    <h3>Espresso</h3>
-                    <p>Café concentrado extraído con presión perfecta</p>
-                    <div class="price">$3.50</div>
-                </div>
-            </div>
-            <div class="menu-item" onclick="addToCart('Cappuccino', 4.25)">
-                <div class="menu-item-image">🥛</div>
-                <div class="menu-item-content">
-                    <h3>Cappuccino</h3>
-                    <p>Espresso con leche vaporizada y espuma cremosa</p>
-                    <div class="price">$4.25</div>
-                </div>
-            </div>
-            <div class="menu-item" onclick="addToCart('Latte', 4.75)">
-                <div class="menu-item-image">🍶</div>
-                <div class="menu-item-content">
-                    <h3>Latte</h3>
-                    <p>Café suave con abundante leche vaporizada</p>
-                    <div class="price">$4.75</div>
-                </div>
-            </div>
-            <div class="menu-item" onclick="addToCart('Americano', 3.25)">
-                <div class="menu-item-image">☕</div>
-                <div class="menu-item-content">
-                    <h3>Americano</h3>
-                    <p>Espresso diluido con agua caliente</p>
-                    <div class="price">$3.25</div>
-                </div>
-            </div>
-            <div class="menu-item" onclick="addToCart('Mocha', 5.25)">
-                <div class="menu-item-image">🍫</div>
-                <div class="menu-item-content">
-                    <h3>Mocha</h3>
-                    <p>Café con chocolate y crema batida</p>
-                    <div class="price">$5.25</div>
-                </div>
-            </div>
-            <div class="menu-item" onclick="addToCart('Frappé', 5.75)">
-                <div class="menu-item-image">🧊</div>
-                <div class="menu-item-content">
-                    <h3>Frappé</h3>
-                    <p>Café frío batido con hielo y crema</p>
-                    <div class="price">$5.75</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="nosotros">
-        <h2 class="section-title">Sobre Nosotros</h2>
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <h3>Nuestra Historia</h3>
-                <p>En Cafeadictos, somos apasionados por el café desde 2015. Comenzamos como un pequeño café local con el sueño de servir el mejor café de la ciudad.</p>
-                
-                <p>Seleccionamos cuidadosamente nuestros granos de café de las mejores plantaciones del mundo, garantizando que cada taza sea una experiencia única para nuestros clientes.</p>
-                
-                <p>Nuestro equipo de baristas expertos se dedica a crear la taza perfecta, combinando técnicas tradicionales con innovación moderna.</p>
-            </div>
-            <div class="about-image fade-in">
-                ☕
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contacto">
-        <h2 class="section-title">Contáctanos</h2>
-        <div class="contact-form">
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-            </div>
-            <button type="button" class="submit-btn" onclick="submitForm()">Enviar Mensaje</button>
-        </div>
-    </section>
-
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="cart-modal">
-        <div class="cart-content">
-            <span class="close-cart" onclick="closeCart()">&times;</span>
-            <h2>Tu Carrito</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                Total: $<span id="cart-total">0.00</span>
-            </div>
-            <button class="submit-btn" onclick="checkout()" style="margin-top: 1rem;">Realizar Pedido</button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Cafeadictos. Todos los derechos reservados.</p>
-        <p>📍 Calle del Café 123, Ciudad | ☎️ (555) 123-4567 | 📧 info@cafeadictos.com</p>
-    </footer>
-    <script src="js/script.js"></script>
-</body>
+<frameset rows="170,*" border="0" framespacing="0" frameborder="0">
+    <frame src="header.html" name="header" scrolling="no" noresize>   
+    <frame src="inicio.html" name="contenido" scrolling="auto">
+    
+    <noframes>
+        <body>
+            <p>Tu navegador no soporta frames. Por favor actualiza tu navegador.</p>
+        </body>
+    </noframes>
+</frameset>
 </html>

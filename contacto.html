@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Cafeadictos</title>
+    <link rel="stylesheet" href="css/styles-global.css">
+</head>
+<body class="contacto-page">
+    <div class="main-content-wrapper">
+        <header class="header-banner">
+            <h2><i>CONTÁCTANOS</i></h2>
+        </header>
+
+        <main class="contacto-main">
+            <div class="contacto-grid">
+                <section class="contact-card">
+                    <div class="contact-card-inner">
+                        <h2><i>✉️ Envíanos un Mensaje</i></h2>
+                        <form action="mailto:info@cafeadictos.com" method="post" enctype="text/plain" class="contact-form">
+                            <div class="form-row">
+                                <label for="nombre"><b>Nombre:</b></label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <label for="email"><b>Email:</b></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <label for="telefono"><b>Teléfono:</b></label>
+                                <input type="tel" id="telefono" name="telefono">
+                            </div>
+                            
+                            <div class="form-row">
+                                <label for="asunto"><b>Asunto:</b></label>
+                                <select id="asunto" name="asunto" required>
+                                    <option value="">Selecciona un tema</option>
+                                    <option value="consulta">Consulta General</option>
+                                    <option value="pedido">Realizar Pedido</option>
+                                    <option value="evento">Eventos Especiales</option>
+                                    <option value="queja">Quejas y Sugerencias</option>
+                                    <option value="trabajo">Oportunidades de Trabajo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <label for="mensaje"><b>Mensaje:</b></label>
+                                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                            </div>
+                            
+                            <div class="form-row checkbox-row">
+                                <input type="checkbox" name="newsletter" value="si" id="news">
+                                <label for="news">Recibir ofertas por email</label>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <input type="submit" value="ENVIAR MENSAJE">
+                                <input type="reset" value="LIMPIAR">
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="contact-card">
+                    <div class="contact-card-inner contact-info">
+                        <h2><i>📍 Información de Contacto</i></h2>
+                        
+                        <div class="info-item">
+                            <p><b>📍 Dirección:</b><br>Calle del Café 123, Ciudad</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <p><b>☎️ Teléfono:</b><br>(555) 123-4567</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <p><b>📧 Email:</b><br>info@cafeadictos.com</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <p><b>🌐 Web:</b><br>www.cafeadictos.com</p>
+                        </div>
+
+                        <h4><i>💳 Métodos de Pago</i></h4>
+                        <div class="payment-methods">
+                            💳 Tarjetas de crédito/débito<br>
+                            📱 PayPal<br>
+                            💰 Efectivo contra entrega<br>
+                            🏦 Transferencia bancaria
+                        </div>
+                    </div>
+                </section>
+
+                <section class="contact-card">
+                    <div class="contact-card-inner">
+                        <h2><i>🕐 Horarios de Atención</i></h2>
+                        
+                        <div class="hours-table">
+                            <div class="hours-row header-row">
+                                <div class="hours-cell"><b>DÍA</b></div>
+                                <div class="hours-cell"><b>HORARIO</b></div>
+                            </div>
+                            <div class="hours-row">
+                                <div class="hours-cell"><b>Lunes a Viernes</b></div>
+                                <div class="hours-cell">6:00 AM - 9:00 PM</div>
+                            </div>
+                            <div class="hours-row">
+                                <div class="hours-cell"><b>Sábados</b></div>
+                                <div class="hours-cell">7:00 AM - 10:00 PM</div>
+                            </div>
+                            <div class="hours-row">
+                                <div class="hours-cell"><b>Domingos</b></div>
+                                <div class="hours-cell">7:00 AM - 8:00 PM</div>
+                            </div>
+                        </div>
+
+                        <div class="hours-footer">
+                            <p><b><i>¡Siempre abiertos para ti!</i></b></p>
+                            <p>Ven cuando gustes, te esperamos con el mejor café</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="contact-card">
+                    <div class="contact-card-inner">
+                        <h2><i>🚚 Servicio de Delivery</i></h2>
+                        
+                        <div class="delivery-info">
+                            <p><b>📍 Cobertura:</b> Ciudad completa y alrededores</p>
+                            <p><b>⏰ Tiempo estimado:</b> 30-45 minutos</p>
+                            <p><b>💵 Costo de envío:</b> $3.99</p>
+                            <p><b>🎉 ENVÍO GRATIS</b> en pedidos superiores a $25</p>
+                        </div>
+
+                        <div class="delivery-marquee">
+                            <marquee behavior="scroll" scrollamount="2" direction="left">
+                                <b>🚚 Delivery Express disponible los 7 días de la semana</b>
+                            </marquee>
+                        </div>
+
+                        <div class="delivery-phone">
+                            <p><b><i>📞 Pedidos por teléfono:</i></b></p>
+                            <p><b>(555) 123-4567</b></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p class="copyright"><b>Cafeadictos &copy; 2025 - Todos los derechos reservados</b></p>
+            
+            <p class="social-text">Síguenos en nuestras redes sociales</p>
+            
+            <p class="social-links">
+                <a href="#">Facebook</a> |
+                <a href="#">Instagram</a> |
+                <a href="#">TikTok</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
